@@ -1,0 +1,8 @@
+.idea/
+.vscode/
+.github/
+
+dist/
+docs/
+release/
+node_modules/

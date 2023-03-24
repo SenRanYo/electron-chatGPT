@@ -1,0 +1,13 @@
+# IDEs
+.idea/
+.vscode/
+
+# Project files
+.github/
+dist/
+docs/dist/
+release/
+buildAssets/
+
+# Lock files
+*-lock.json
