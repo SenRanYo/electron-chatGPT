@@ -32,6 +32,8 @@
     "no-trailing-spaces": 1,
     "no-control-regex": 0,
     "no-useless-constructor": 0,
-    "node/no-deprecated-api": 0
+    "node/no-deprecated-api": 0,
+    "vue/multi-word-component-names": 0,
+    "vue/first-attribute-linebreak": 0
   }
 }

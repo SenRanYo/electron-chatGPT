@@ -1,5 +1,5 @@
 <template>
-  <div></div>
+  <div>IndexPage</div>
 </template>
 
 <script setup lang="ts">
@@ -9,6 +9,7 @@
 .el-container {
   height: 100%;
 }
+
 
 .el-aside {
   border-right: 1px solid var(--el-border-color);
