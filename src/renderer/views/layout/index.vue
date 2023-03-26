@@ -15,13 +15,22 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
 import Logo from "@renderer/components/Logo.vue";
 import Control from "@renderer/components/Control.vue";
 import Search from "@renderer/components/Search.vue";
 import Chats from "@renderer/components/Chats.vue";
 import Prompts from "@renderer/components/Prompts.vue";
 import Toolbar from "@renderer/components/Toolbar.vue";
+import { ref } from "vue";
+import { db } from "@/renderer/db";
+import { liveQuery } from "dexie";
+import { useOpenAIStore } from "@/renderer/store/openai"
+
+const openaiStore = useOpenAIStore();
+liveQuery(() => db.settings.where({ id: "all" }).first()).subscribe(setting => {
+  if (setting?.key) openaiStore.init({ apiKey: setting.key })
+  openaiStore.model = setting?.model
+})
 
 const type = ref("Chats");
 const search = ref("");

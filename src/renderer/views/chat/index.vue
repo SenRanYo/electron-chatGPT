@@ -1,12 +1,11 @@
 <template>
   <ChatHeader :chat="chat"></ChatHeader>
-  <ChatMessages :chat="chat" :offset-height="offsetHeight"></ChatMessages>
-  <ChatInput :chat="chat" @size="handleOnSize"></ChatInput>
+  <ChatMessages :chat="chat" :offset-height="offsetHeight" :wait="wait"></ChatMessages>
+  <ChatInput :chat="chat" @size="handleOnSize" @wait="handleOnWait"></ChatInput>
 </template>
 
 <script setup lang="ts">
-import { db, Chat } from "../db";
-// import { nanoid } from "nanoid"
+import { db, Chat } from "../../db";
 import { ref, watch, reactive, } from "vue"
 import { useRoute } from "vue-router"
 
@@ -37,15 +36,9 @@ function handleOnSize(height: number) {
   offsetHeight.value = height
 }
 
-// function handleTestMessage() {
-//   const id = nanoid();
-//   db.messages.add({
-//     id,
-//     chatId: chatId.value,
-//     role: "user",
-//     content: new Date().toDateString(),
-//     createdAt: new Date()
-//   });
-// }
+const wait = ref<boolean>(false)
+function handleOnWait(waitState: boolean) {
+  wait.value = waitState;
+}
 </script>
 

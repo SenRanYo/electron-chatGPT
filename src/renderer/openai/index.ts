@@ -1,6 +1,19 @@
 import { db } from "../db"
 import { defaultModel } from "./constants"
-import { OpenAIApi, Configuration, ChatCompletionRequestMessage } from "openai"
+import { OpenAIApi, Configuration, ChatCompletionRequestMessage, ConfigurationParameters } from "openai"
+
+export class OpenAI {
+  config: Configuration
+  openai!: OpenAIApi
+  constructor(config: ConfigurationParameters) {
+    this.config = new Configuration(config)
+  }
+
+  create() {
+    this.openai = new OpenAIApi(this.config)
+    return this.openai
+  }
+}
 
 function openClient(apiKey: string) {
   const configuration = new Configuration({ apiKey })

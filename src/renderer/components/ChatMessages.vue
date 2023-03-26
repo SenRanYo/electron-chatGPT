@@ -16,6 +16,13 @@
             </div>
           </div>
         </div>
+        <div v-if="props.wait" class="message-item">
+          <a-skeleton class="skeleton" loading animation>
+            <a-space direction="vertical" size="large" fill>
+              <a-skeleton-line :rows="3" />
+            </a-space>
+          </a-skeleton>
+        </div>
       </div>
     </a-scrollbar>
   </div>
@@ -30,6 +37,7 @@ import { IconUser, IconCopy } from '@arco-design/web-vue/es/icon';
 
 
 const props = defineProps({
+  wait: { type: Boolean, default: false },
   chat: { type: Object, default: () => ({}) },
   offsetHeight: { type: Number, default: 0 },
 });
@@ -51,6 +59,11 @@ watch(() => props.chat.id, id => {
 }, { immediate: true })
 
 watch(() => props.offsetHeight, async () => {
+  await nextTick();
+  scrollbarRef.value?.scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" });
+})
+
+watch(() => props.wait, async () => {
   await nextTick();
   scrollbarRef.value?.scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" });
 })
@@ -115,6 +128,10 @@ watch(() => props.offsetHeight, async () => {
             background-color: var(--color-neutral-2);
           }
         }
+      }
+
+      .skeleton {
+        width: 100%;
       }
     }
   }

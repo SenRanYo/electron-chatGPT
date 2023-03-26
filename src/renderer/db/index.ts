@@ -10,7 +10,7 @@ export interface Chat {
 export interface Message {
   id: string
   chatId: string
-  role: "ai" | "user"
+  role: string
   content: string
   createdAt: Date | undefined
 }

@@ -3,7 +3,9 @@
     <router-view></router-view>
   </a-config-provider>
 </template>
-<style>
+<style lang="less">
+@import url("./styles/common.less");
+
 html,
 body,
 #app {

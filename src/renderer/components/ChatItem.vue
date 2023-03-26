@@ -5,7 +5,7 @@
     </div>
     <div class="chat-content">
       <span class="chat-title">{{ props.chat.title }}</span>
-      <span v-if="lastMessage.content" class="chat-msg">{{ lastMessage.content }}</span>
+      <span class="chat-msg">{{ lastMessage.content }}</span>
     </div>
     <a-dropdown @select="handleOnSelect">
       <div class="chat-edit">
@@ -100,6 +100,7 @@ async function handleOnSelect(value: string | number | Record<string, any> | und
     margin-left: 16px;
     overflow: hidden;
     flex-direction: column;
+    justify-content: space-around;
 
 
     .chat-title {
@@ -109,7 +110,6 @@ async function handleOnSelect(value: string | number | Record<string, any> | und
     }
 
     .chat-msg {
-      margin-top: 8px;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;

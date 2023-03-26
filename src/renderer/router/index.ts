@@ -5,15 +5,19 @@ export default createRouter({
   routes: [
     {
       path: "/",
-      component: () => import("../views/LayoutPage.vue"),
+      component: () => import("../views/layout/index.vue"),
       children: [
         {
           path: "",
-          component: () => import("../views/IndexPage.vue")
+          component: () => import("../views/index/index.vue")
         },
         {
           path: "chat/:id",
-          component: () => import("../views/ChatPage.vue")
+          component: () => import("../views/chat/index.vue")
+        },
+        {
+          path: "setting",
+          component: () => import("../views/setting/index.vue")
         }
       ]
     }
