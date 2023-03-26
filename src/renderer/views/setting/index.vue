@@ -56,6 +56,7 @@ function handleSaveSetting() {
 .setting {
   display: flex;
   flex-direction: column;
+  color: var(--color-text-1);
 
   .content {
     padding: 32px;
