@@ -11,10 +11,6 @@
         <icon-settings />
       </div>
     </a-tooltip>
-    <div class="toobar-item">
-    </div>
-    <div class="toobar-item">
-    </div>
   </div>
 </template>
 
@@ -44,7 +40,6 @@ function handleGoSetting() {
   padding: 8px;
   margin-top: auto;
   color: var(--color-text-1);
-  justify-content: space-between;
   border-top: 1px solid var(--color-border);
   transition: all 0.3s ease;
 

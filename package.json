@@ -27,6 +27,7 @@
   "dependencies": {
     "@vueuse/core": "^9.13.0",
     "@vueuse/router": "^9.13.0",
+    "dayjs": "^1.11.7",
     "dexie": "^3.2.3",
     "md-editor-v3": "^2.11.0",
     "nanoid": "^4.0.1",

@@ -5,7 +5,8 @@
       <div ref="scrollbarRef" class="message-list">
         <div v-for="(item) in messages" :key="item.id" class="message-item">
           <div class="message-avatar">
-            <icon-user />
+            <icon-user v-if="item.role === 'user'" />
+            <icon-robot v-else />
           </div>
           <div class="message-content">
             <!-- 'default' | 'github' | 'vuepress' | 'mk-cute' | 'smart-blue' | 'cyanosis' -->
@@ -34,12 +35,13 @@
 <script setup lang="ts">
 import 'md-editor-v3/lib/style.css';
 import MdEditor from 'md-editor-v3';
+import dayjs from 'dayjs';
 import { db, Message } from "../db";
 import { liveQuery } from "dexie";
 import { useAppStore } from "@/renderer/store/app"
 import { useElementSize } from "@vueuse/core"
 import { ref, watch, computed, defineProps, nextTick } from "vue"
-import { IconUser, IconCopy } from '@arco-design/web-vue/es/icon';
+import { IconUser, IconCopy, IconRobot } from '@arco-design/web-vue/es/icon';
 
 const props = defineProps({
   wait: { type: Boolean, default: false },
@@ -58,7 +60,7 @@ const styles = computed(() => { return { height: height.value - props.offsetHeig
 watch(() => props.chat.id, id => {
   if (id) {
     liveQuery(() => db.messages.where('chatId').equals(id).sortBy('createdAt')).subscribe(async list => {
-      messages.value = list;
+      messages.value = list.map(item => { return { ...item, createdAt: dayjs(item.createdAt).format("YYYY-MM-DD HH:mm:ss") } });
       await nextTick();
       scrollbarRef.value?.scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" });
     })
@@ -116,6 +118,10 @@ watch(() => props.wait, async () => {
 
         .md-editor {
           background-color: inherit;
+
+          :deep(.default-theme p) {
+            padding: 0.25rem 0;
+          }
         }
       }
 

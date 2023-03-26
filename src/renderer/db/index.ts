@@ -4,7 +4,7 @@ export interface Chat {
   id: string
   title: string
   tokens: number
-  createdAt: Date | undefined
+  createdAt: Date | string | undefined
 }
 
 export interface Message {
@@ -12,14 +12,14 @@ export interface Message {
   chatId: string
   role: string
   content: string
-  createdAt: Date | undefined
+  createdAt: Date | string | undefined
 }
 
 export interface Prompt {
   id: string
   title: string
   content: string
-  createdAt: Date | undefined
+  createdAt: Date | string | undefined
 }
 
 export interface Setting {
