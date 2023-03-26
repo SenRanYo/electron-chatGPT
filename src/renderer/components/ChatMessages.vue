@@ -8,7 +8,7 @@
             <icon-user />
           </div>
           <div class="message-content">
-            <MdEditor v-model="item.content" :preview-only="true" />
+            <md-editor v-model="item.content" :preview-only="true" theme="dark" />
             <!-- <p class="date-text" v-html="item.content"></p> -->
             <p class="date-text">{{ item.createdAt }}</p>
           </div>
