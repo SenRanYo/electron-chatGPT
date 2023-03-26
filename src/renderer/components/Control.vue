@@ -38,7 +38,7 @@ function handleClickNewChats() {
   const id = nanoid();
   db.chats.add({
     id,
-    title: id,
+    title: "New Chats",
     tokens: 0,
     createdAt: new Date(),
   });

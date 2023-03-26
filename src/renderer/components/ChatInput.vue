@@ -44,6 +44,7 @@ async function handleEnter(event: any) {
     if (len) {
       const systemMessage = { id: nanoid(), chatId: props.chat.id, role: "system", content: "You are ChatGPT, a large language model trained by OpenAI.", createdAt: new Date() }
       await db.messages.add({ id: nanoid(), chatId: props.chat.id, role: "user", content: content.value, createdAt: new Date() });
+      if (messages.value.length === 0) await handleChangeChatTitle(content.value)
       const list = await db.messages.where('chatId').equals(props.chat.id).sortBy('createdAt');
       content.value = "";
       try {
@@ -61,6 +62,12 @@ async function handleEnter(event: any) {
         if (msg) Notification.error({ title: "错误", content: msg })
       }
     }
+  }
+
+  async function handleChangeChatTitle(title: string) {
+    await db.chats.where('id').equals(props.chat.id).modify((chat) => {
+      chat.title = title
+    })
   }
 
   // if (!event.shiftKey && content.value) {

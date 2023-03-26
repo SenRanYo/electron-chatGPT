@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/no-v-html -->
 <template>
   <div ref="messageRef" class="chat-message">
     <a-scrollbar :style="styles">
@@ -7,7 +8,8 @@
             <icon-user />
           </div>
           <div class="message-content">
-            <p class="date-text">{{ item.content }}</p>
+            <MdEditor v-model="item.content" :preview-only="true" />
+            <!-- <p class="date-text" v-html="item.content"></p> -->
             <p class="date-text">{{ item.createdAt }}</p>
           </div>
           <div class="message-control">
@@ -29,6 +31,8 @@
 </template>
 
 <script setup lang="ts">
+import 'md-editor-v3/lib/style.css';
+import MdEditor from 'md-editor-v3';
 import { db, Message } from "../db";
 import { liveQuery } from "dexie";
 import { useElementSize } from "@vueuse/core"
@@ -106,6 +110,10 @@ watch(() => props.wait, async () => {
         margin-right: 16px;
         flex-direction: column;
         color: var(--color-neutral-8);
+
+        .md-editor {
+          background-color: inherit;
+        }
       }
 
       .message-control {
