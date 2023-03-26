@@ -1,7 +1,7 @@
 <template>
   <div class="toobar">
     <a-tooltip :content="isDark ? '浅色模式' : '暗黑模式'">
-      <div class="toobar-item" @click="toggleDark()">
+      <div class="toobar-item" @click="switchTheme()">
         <icon-sun-fill v-if="isDark" />
         <icon-moon-fill v-else />
       </div>
@@ -19,20 +19,20 @@
 </template>
 
 <script setup lang="ts">
+import { watch } from 'vue'
 import { useRouter } from "vue-router"
+import { useAppStore } from "@/renderer/store/app"
 import { useDark, useToggle } from "@vueuse/core"
 import { IconMoonFill, IconSunFill, IconSettings } from '@arco-design/web-vue/es/icon';
 
+
+const isDark = useDark({ selector: 'body', attribute: 'arco-theme', valueDark: 'dark', valueLight: 'light', })
+const switchTheme = useToggle(isDark)
+
+const appStore = useAppStore()
+watch(isDark, (val) => { appStore.isDark = val })
+
 const router = useRouter()
-
-const isDark = useDark({
-  selector: 'body',
-  attribute: 'arco-theme',
-  valueDark: 'dark',
-  valueLight: 'light',
-})
-const toggleDark = useToggle(isDark)
-
 function handleGoSetting() {
   router.push({ path: '/setting' })
 }

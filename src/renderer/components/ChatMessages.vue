@@ -8,8 +8,9 @@
             <icon-user />
           </div>
           <div class="message-content">
-            <md-editor v-model="item.content" :preview-only="true" theme="dark" />
-            <!-- <p class="date-text" v-html="item.content"></p> -->
+            <!-- 'default' | 'github' | 'vuepress' | 'mk-cute' | 'smart-blue' | 'cyanosis' -->
+            <md-editor v-model="item.content" :preview-only="true" :theme="appStore.isDark ? 'dark' : 'light'"
+              preview-theme="default" code-theme="atom" :no-prettier="true" />
             <p class="date-text">{{ item.createdAt }}</p>
           </div>
           <div class="message-control">
@@ -35,16 +36,18 @@ import 'md-editor-v3/lib/style.css';
 import MdEditor from 'md-editor-v3';
 import { db, Message } from "../db";
 import { liveQuery } from "dexie";
+import { useAppStore } from "@/renderer/store/app"
 import { useElementSize } from "@vueuse/core"
 import { ref, watch, computed, defineProps, nextTick } from "vue"
 import { IconUser, IconCopy } from '@arco-design/web-vue/es/icon';
-
 
 const props = defineProps({
   wait: { type: Boolean, default: false },
   chat: { type: Object, default: () => ({}) },
   offsetHeight: { type: Number, default: 0 },
 });
+
+const appStore = useAppStore()
 
 const messages = ref<Message[]>([]);
 const messageRef = ref<HTMLDivElement>();
