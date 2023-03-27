@@ -1,7 +1,7 @@
 {
   "name": "electron-vue",
   "version": "1.0.0",
-  "description": "electron-vue",
+  "description": "Electron Vue3 Vite Pinia chatGPT",
   "author": "SenRanYo <1342554547@qq.com>",
   "license": "MIT",
   "main": "dist/main/index.js",
