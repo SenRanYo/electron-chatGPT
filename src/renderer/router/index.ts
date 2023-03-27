@@ -1,23 +1,27 @@
 import { createRouter, createWebHashHistory } from "vue-router/dist/vue-router.esm-bundler"
+import Layout from "../views/layout/index.vue"
+import Index from "../views/index/index.vue"
+import Chat from "../views/chat/index.vue"
+import Setting from "../views/setting/index.vue"
 
 export default createRouter({
   history: createWebHashHistory(),
   routes: [
     {
       path: "/",
-      component: () => import("../views/layout/index.vue"),
+      component: Layout,
       children: [
         {
           path: "",
-          component: () => import("../views/index/index.vue")
+          component: Index
         },
         {
           path: "chat/:id",
-          component: () => import("../views/chat/index.vue")
+          component: Chat
         },
         {
           path: "setting",
-          component: () => import("../views/setting/index.vue")
+          component: Setting
         }
       ]
     }

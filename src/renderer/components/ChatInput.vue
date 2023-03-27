@@ -70,37 +70,6 @@ async function handleEnter(event: any) {
     })
   }
 
-  // if (!event.shiftKey && content.value) {
-  //   console.log(content.value);
-
-  //   console.log(1222);
-  //   event.preventDefault();
-  //   const id = nanoid();
-  //   await db.messages.add({
-  //     id,
-  //     chatId: props.chat.id,
-  //     role: "user",
-  //     content: content.value,
-  //     createdAt: new Date()
-  //   });
-  //   const list = await db.messages.where('chatId').equals(props.chat.id).sortBy('createdAt')
-  //   if (messages.value.length === 0) {
-  //     list.push({
-  //       id,
-  //       chatId: props.chat.id,
-  //       role: "system",
-  //       content: 'You are ChatGPT, a large language model trained by OpenAI.',
-  //       createdAt: new Date()
-  //     })
-  //   }
-  //   const result = await openaiStore.openai.createChatCompletion({
-  //     model: openaiStore.model,
-  //     stream: false,
-  //     messages: list.map(item => { return { role: item.role, content: item.content } })
-  //   })
-  //   console.log(result);
-  // }
-
 }
 
 </script>

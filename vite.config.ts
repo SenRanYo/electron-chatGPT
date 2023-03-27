@@ -1,12 +1,11 @@
-import vue from "@vitejs/plugin-vue"
-import AutoImport from "unplugin-auto-import/vite"
-import Components from "unplugin-vue-components/vite"
-import { join } from "path"
-import { defineConfig } from "vite"
-import { ArcoResolver } from "unplugin-vue-components/resolvers"
-import { VitePluginDoubleshot } from "vite-plugin-doubleshot"
+import vue from "@vitejs/plugin-vue";
+import AutoImport from "unplugin-auto-import/vite";
+import Components from "unplugin-vue-components/vite";
+import { join } from "path";
+import { defineConfig } from "vite";
+import { ArcoResolver } from "unplugin-vue-components/resolvers";
+import { VitePluginDoubleshot } from "vite-plugin-doubleshot";
 
-// https://vitejs.dev/config/
 export default defineConfig({
   root: join(__dirname, "src/renderer"),
   plugins: [
@@ -60,4 +59,4 @@ export default defineConfig({
       }
     }
   }
-})
+});
